@@ -1,0 +1,91 @@
+{
+  "lexicon": 1,
+  "id": "sh.comet.v0.feed.track",
+  "defs": {
+    "main": {
+      "type": "record",
+      "description": "A Comet audio track.",
+      "key": "tid",
+      "record": {
+        "type": "object",
+        "required": ["audio", "title", "createdAt"],
+        "properties": {
+          "audio": {
+            "type": "blob",
+            "description": "Audio of the track, ideally encoded as 96k Opus. Limited to 100mb.",
+            "accept": ["audio/ogg"],
+            "maxSize": 100000000
+          },
+          "image": {
+            "type": "blob",
+            "description": "Image to be displayed representing the track.",
+            "accept": ["image/png", "image/jpeg"],
+            "maxSize": 1000000
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of the track. Usually shouldn't include the creator's name.",
+            "minLength": 1,
+            "maxLength": 2560,
+            "maxGraphemes": 256
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the track.",
+            "maxLength": 20000,
+            "maxGraphemes": 2000
+          },
+          "descriptionFacets": {
+            "type": "ref",
+            "description": "Annotations of the track's description.",
+            "ref": "sh.comet.v0.richtext.facets"
+          },
+          "tags": {
+            "type": "array",
+            "description": "Tags/genres for the track. First item is used as the \"primary\" tag. | TODO: reconsider maxLength value",
+            "minLength": 1,
+            "maxLength": 5,
+            "items": { "type": "ref", "ref": "sh.comet.v0.feed.defs#tag" }
+          },
+          "link": {
+            "type": "ref",
+            "ref": "sh.comet.v0.feed.defs#link"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "datetime",
+            "description": "Timestamp for when the track was originally created/released."
+          }
+        }
+      }
+    },
+    "view": {
+      "type": "object",
+      "required": ["uri", "cid", "author", "audio", "record", "indexedAt"],
+      "properties": {
+        "uri": { "type": "string", "format": "at-uri" },
+        "cid": { "type": "string", "format": "cid" },
+        "author": { "type": "ref", "ref": "TODO" },
+        "audio": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL pointing to where the audio data for the track can be fetched. May be re-encoded from the original blob."
+        },
+        "image": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL pointing to where the image for the track can be fetched."
+        },
+        "record": {
+          "type": "ref",
+          "ref": "#main"
+        },
+        "repostCount": { "type": "integer" },
+        "likeCount": { "type": "integer" },
+        "playCount": { "type": "integer" },
+        "indexedAt": { "type": "string", "format": "datetime" },
+        "viewer": { "type": "ref", "ref": "sh.comet.v0.feed.defs#viewerState" }
+      }
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "lexicon": 1,
+  "id": "sh.comet.v0.feed.playlist",
+  "defs": {
+    "main": {
+      "type": "record",
+      "description": "A Comet playlist, containing many audio tracks.",
+      "key": "tid",
+      "record": {
+        "type": "object",
+        "required": ["tracks", "title", "type", "createdAt"],
+        "properties": {
+          "tracks": {
+            "type": "array",
+            "minLength": 1,
+            "items": { "type": "ref", "ref": "com.atproto.repo.strongRef" }
+          },
+          "image": {
+            "type": "blob",
+            "description": "Image to be displayed representing the playlist.",
+            "accept": ["image/png", "image/jpeg"],
+            "maxSize": 1000000
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of the playlist.",
+            "minLength": 1,
+            "maxLength": 2560,
+            "maxGraphemes": 256
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the playlist.",
+            "maxLength": 20000,
+            "maxGraphemes": 2000
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of the playlist. Allows differentiating between playlist's different purposes.",
+            "knownValues": [
+              "sh.comet.v0.feed.playlist#album",
+              "sh.comet.v0.feed.playlist#compilation",
+              "sh.comet.v0.feed.playlist#playlist",
+              "sh.comet.v0.feed.playlist#podcast"
+            ]
+          },
+          "tags": {
+            "type": "array",
+            "description": "Tags/genres for the playlist. First item is used as the \"primary\" tag. | TODO: reconsider maxLength value",
+            "minLength": 1,
+            "maxLength": 5,
+            "items": { "type": "ref", "ref": "sh.comet.v0.feed.defs#tag" }
+          },
+          "link": {
+            "type": "ref",
+            "ref": "sh.comet.v0.feed.defs#link"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "datetime",
+            "description": "Timestamp for when the playlist was originally created."
+          }
+        }
+      }
+    },
+    "album": {
+      "type": "token",
+      "description": "Indicates the playlist is an album or extended play."
+    },
+    "compilation": {
+      "type": "token",
+      "description": "Indicates the playlist is a compilation of various tracks, usually put together by a label."
+    },
+    "playlist": {
+      "type": "token",
+      "description": "Indicates the playlist is a miscellaneous list of tracks."
+    },
+    "podcast": {
+      "type": "token",
+      "description": "Indicates the playlist is a podcast or radio show split into several individual tracks."
+    }
+  }
+}

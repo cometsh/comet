@@ -1,0 +1,51 @@
+{
+  "lexicon": 1,
+  "id": "sh.comet.v0.actor.profile",
+  "defs": {
+    "main": {
+      "type": "record",
+      "description": "A user's Comet profile.",
+      "key": "literal:self",
+      "record": {
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "type": "string",
+            "maxGraphemes": 64,
+            "maxLength": 640
+          },
+          "description": {
+            "type": "string",
+            "description": "Free-form profile description text.",
+            "maxGraphemes": 256,
+            "maxLength": 2560
+          },
+          "descriptionFacets": {
+            "type": "ref",
+            "description": "Annotations of the user's description.",
+            "ref": "sh.comet.v0.richtext.facets"
+          },
+          "avatar": {
+            "type": "blob",
+            "description": "Small image to be displayed next to posts from account. AKA, 'profile picture'",
+            "accept": ["image/png", "image/jpeg"],
+            "maxSize": 1000000
+          },
+          "featured": {
+            "type": "array",
+            "items": {
+              "type": "ref",
+              "ref": "com.atproto.repo.strongRef"
+            }
+          },
+          "createdAt": { "type": "string", "format": "datetime" }
+        }
+      }
+    },
+    "view": {},
+    "viewBasic": {
+      "type": "object",
+      "properties": {}
+    }
+  }
+}
