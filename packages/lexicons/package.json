@@ -1,0 +1,16 @@
+{
+  "name": "lexicons",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@atproto/lex-cli": "^0.8.1",
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@atproto/lexicon": "^0.4.11"
+  }
+}

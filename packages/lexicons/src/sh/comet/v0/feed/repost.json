@@ -1,6 +1,6 @@
 {
   "lexicon": 1,
-  "id": "sh.comet.v0.feed.like",
+  "id": "sh.comet.v0.feed.repost",
   "defs": {
     "main": {
       "type": "record",
