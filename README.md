@@ -1,38 +1,22 @@
-# sv
+# Comet
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+> Music on ATProto.
 
-## Creating a project
+Comet's goal is to provide an open, decentralised alternative for uploading and
+sharing your music with others.
 
-If you're seeing this, you've probably already done this step. Congrats!
+Follow along on Bluesky! [@comet.sh](https://bsky.app/profile/comet.sh) /
+[@ovyerus.com](https://bsky.app/profile/ovyerus.com)
 
-```bash
-# create a new project in the current directory
-npx sv create
+This project is in the _very_ early stages and a lot will change over time,
+especially as this is my first foray into the ATProtocol ecosystem. Stuff will
+be a bit messy for a while. Feel free to contribute and voice your opinions!
 
-# create a new project in my-app
-npx sv create my-app
-```
+## Current Status
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+- [ ] Experimental Lexicons
+  - [x] Records
+  - [ ] Queries
+- [ ] PoC Node/Bun AppView (eventually I want to rewrite in something like Rust
+      or Elixir. TBD)
+- [ ] Clients
