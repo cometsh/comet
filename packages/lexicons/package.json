@@ -1,8 +1,11 @@
 {
-  "name": "lexicons",
+  "name": "@comet/lexicons",
   "module": "index.ts",
   "type": "module",
   "private": true,
+  "scripts": {
+    "generate": "zsh gen.sh"
+  },
   "devDependencies": {
     "@atproto/lex-cli": "^0.8.1",
     "@types/bun": "latest"

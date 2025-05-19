@@ -1,16 +1,6 @@
 {
   "name": "@comet/workspace",
   "version": "1.0.0",
-  "private": true,
-  "type": "module",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
-  "scripts": {
-    "format": "prettier --write .",
-    "lint": "prettier --check . && eslint ."
-  },
   "devDependencies": {
     "@types/bun": "latest",
     "prettier": "^3.5.3",
@@ -19,5 +9,15 @@
   },
   "peerDependencies": {
     "typescript": "^5"
-  }
+  },
+  "private": true,
+  "scripts": {
+    "format": "prettier --write .",
+    "lint": "prettier --check . && eslint ."
+  },
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
 }
