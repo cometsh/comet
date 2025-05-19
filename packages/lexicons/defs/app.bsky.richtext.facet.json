@@ -1,6 +1,6 @@
 {
   "lexicon": 1,
-  "id": "sh.comet.v0.richtext.facets",
+  "id": "app.bsky.richtext.facet",
   "defs": {
     "main": {
       "type": "object",
@@ -35,7 +35,7 @@
       "description": "Facet feature for a hashtag. The text usually includes a '#' prefix, but the facet reference should not (except in the case of 'double hash tags').",
       "required": ["tag"],
       "properties": {
-        "tag": { "type": "ref", "ref": "sh.comet.v0.feed.defs#tag" }
+        "tag": { "type": "string", "maxLength": 640, "maxGraphemes": 64 }
       }
     },
     "byteSlice": {

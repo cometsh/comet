@@ -2,21 +2,6 @@
   "lexicon": 1,
   "id": "sh.comet.v0.feed.defs",
   "defs": {
-    "tag": {
-      "type": "string",
-      "knownValues": [
-        "sh.comet.v0.feed.tag#alternative",
-        "sh.comet.v0.feed.tag#ambient",
-        "sh.comet.v0.feed.tag#electronic",
-        "sh.comet.v0.feed.tag#experimental",
-        "sh.comet.v0.feed.tag#hiphop",
-        "sh.comet.v0.feed.tag#metal",
-        "sh.comet.v0.feed.tag#rock",
-        "sh.comet.v0.feed.tag#podcast",
-        "sh.comet.v0.feed.tag#pop",
-        "sh.comet.v0.feed.tag#punk"
-      ]
-    },
     "link": {
       "type": "object",
       "description": "Link for the track. Usually to acquire it in some way, e.g. via free download or purchase. | TODO: multiple links?",

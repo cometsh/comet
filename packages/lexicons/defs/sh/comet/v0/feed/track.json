@@ -38,14 +38,13 @@
           "descriptionFacets": {
             "type": "ref",
             "description": "Annotations of the track's description.",
-            "ref": "sh.comet.v0.richtext.facets"
+            "ref": "app.bsky.richtext.facets"
           },
           "tags": {
             "type": "array",
-            "description": "Tags/genres for the track. First item is used as the \"primary\" tag. | TODO: reconsider maxLength value",
-            "minLength": 1,
-            "maxLength": 5,
-            "items": { "type": "ref", "ref": "sh.comet.v0.feed.defs#tag" }
+            "description": "Hashtags for the track, usually for genres.",
+            "maxLength": 8,
+            "items": { "type": "string", "maxLength": 640, "maxGraphemes": 64 }
           },
           "link": {
             "type": "ref",

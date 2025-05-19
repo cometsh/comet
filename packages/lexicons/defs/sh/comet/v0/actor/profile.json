@@ -23,7 +23,7 @@
           "descriptionFacets": {
             "type": "ref",
             "description": "Annotations of the user's description.",
-            "ref": "sh.comet.v0.richtext.facets"
+            "ref": "app.bsky.richtext.facets"
           },
           "avatar": {
             "type": "blob",
