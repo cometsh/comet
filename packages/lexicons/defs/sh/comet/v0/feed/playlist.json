@@ -13,7 +13,7 @@
           "tracks": {
             "type": "array",
             "minLength": 1,
-            "items": { "type": "ref", "ref": "com.atproto.repo.strongRef" }
+            "items": { "type": "string", "format": "at-uri" }
           },
           "image": {
             "type": "blob",
