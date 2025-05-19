@@ -23,7 +23,7 @@
           "descriptionFacets": {
             "type": "ref",
             "description": "Annotations of the user's description.",
-            "ref": "app.bsky.richtext.facets"
+            "ref": "sh.comet.v0.richtext.facet"
           },
           "avatar": {
             "type": "blob",
@@ -33,10 +33,9 @@
           },
           "featured": {
             "type": "array",
-            "items": {
-              "type": "ref",
-              "ref": "com.atproto.repo.strongRef"
-            }
+            "description": "Pinned items to be shown first on the user's profile.",
+            "maxLength": 5,
+            "items": { "type": "string", "format": "at-uri" }
           },
           "createdAt": { "type": "string", "format": "datetime" }
         }

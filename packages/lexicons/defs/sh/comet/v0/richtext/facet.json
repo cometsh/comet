@@ -1,6 +1,6 @@
 {
   "lexicon": 1,
-  "id": "app.bsky.richtext.facet",
+  "id": "sh.comet.v0.richtext.facet",
   "defs": {
     "main": {
       "type": "object",
@@ -36,6 +36,17 @@
       "required": ["tag"],
       "properties": {
         "tag": { "type": "string", "maxLength": 640, "maxGraphemes": 64 }
+      }
+    },
+    "timestamp": {
+      "type": "object",
+      "description": "Facet feature for a timestamp in a track. The text usually is in the format of 'hh:mm:ss' with the hour section being omitted if unnecessary.",
+      "properties": {
+        "timestamp": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Reference time, in seconds."
+        }
       }
     },
     "byteSlice": {

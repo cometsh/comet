@@ -1,0 +1,47 @@
+{
+  "lexicon": 1,
+  "id": "sh.comet.v0.feed.comment",
+  "defs": {
+    "main": {
+      "type": "record",
+      "description": "A comment on a piece of Comet media.",
+      "key": "tid",
+      "record": {
+        "type": "object",
+        "required": ["text", "subject", "createdAt"],
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "minGraphemes": 1,
+            "maxLength": 3000,
+            "maxGraphemes": 300,
+            "description": "The comment's content."
+          },
+          "subject": {
+            "type": "string",
+            "format": "at-uri",
+            "description": "The piece of media being commented on."
+          },
+          "reply": {
+            "type": "string",
+            "format": "at-uri",
+            "description": "Another sh.comet.v0.feed.comment this is in reply to."
+          },
+          "langs": {
+            "type": "array",
+            "description": "Indicates human language of the comment's text content.",
+            "maxLength": 3,
+            "items": { "type": "string", "format": "language" }
+          },
+          "facets": {
+            "type": "array",
+            "description": "Annotations of text (mentions, URLs, hashtags, etc)",
+            "items": { "type": "ref", "ref": "sh.comet.v0.richtext.facet" }
+          },
+          "createdAt": { "type": "string", "format": "datetime" }
+        }
+      }
+    }
+  }
+}

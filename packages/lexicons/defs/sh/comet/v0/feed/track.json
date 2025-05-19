@@ -38,7 +38,7 @@
           "descriptionFacets": {
             "type": "ref",
             "description": "Annotations of the track's description.",
-            "ref": "app.bsky.richtext.facets"
+            "ref": "sh.comet.v0.richtext.facets"
           },
           "tags": {
             "type": "array",

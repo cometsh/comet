@@ -34,6 +34,11 @@
             "maxLength": 20000,
             "maxGraphemes": 2000
           },
+          "descriptionFacets": {
+            "type": "ref",
+            "description": "Annotations of the playlist's description.",
+            "ref": "sh.comet.v0.richtext.facets"
+          },
           "type": {
             "type": "string",
             "description": "Type of the playlist. Allows differentiating between playlist's different purposes.",
