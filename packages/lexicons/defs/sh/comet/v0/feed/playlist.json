@@ -37,7 +37,7 @@
           "descriptionFacets": {
             "type": "ref",
             "description": "Annotations of the playlist's description.",
-            "ref": "sh.comet.v0.richtext.facets"
+            "ref": "sh.comet.v0.richtext.facet"
           },
           "type": {
             "type": "string",

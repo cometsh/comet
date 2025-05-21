@@ -31,8 +31,6 @@
       "properties": {
         "like": { "type": "string", "format": "at-uri" },
         "repost": { "type": "string", "format": "at-uri" }
-        // TODO: pinned items
-        // TODO: maybe what personal playlists it's in?
       }
     }
   }

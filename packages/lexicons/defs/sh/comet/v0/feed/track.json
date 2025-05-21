@@ -38,7 +38,7 @@
           "descriptionFacets": {
             "type": "ref",
             "description": "Annotations of the track's description.",
-            "ref": "sh.comet.v0.richtext.facets"
+            "ref": "sh.comet.v0.richtext.facet"
           },
           "tags": {
             "type": "array",
@@ -64,7 +64,7 @@
       "properties": {
         "uri": { "type": "string", "format": "at-uri" },
         "cid": { "type": "string", "format": "cid" },
-        "author": { "type": "ref", "ref": "TODO" },
+        "author": { "type": "unknown", "description": "TODO" },
         "audio": {
           "type": "string",
           "format": "uri",
