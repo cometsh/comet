@@ -1,19 +1,19 @@
 {
   "name": "@comet/lexicons",
   "module": "index.ts",
-  "type": "module",
-  "private": true,
-  "scripts": {
-    "generate": "zsh gen.sh"
-  },
   "devDependencies": {
-    "@atproto/lex-cli": "^0.8.1",
+    "@atcute/lex-cli": "^2.0.2",
     "@types/bun": "latest"
   },
   "peerDependencies": {
     "typescript": "^5"
   },
+  "private": true,
+  "scripts": {
+    "generate": "lex-cli generate -c ./lex-cli.config.js"
+  },
+  "type": "module",
   "dependencies": {
-    "@atproto/lexicon": "^0.4.11"
+    "@atcute/lexicons": "^1.0.3"
   }
 }

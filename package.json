@@ -13,7 +13,8 @@
   "private": true,
   "scripts": {
     "format": "prettier --write .",
-    "lint": "prettier --check . && eslint ."
+    "lint": "prettier --check . && eslint .",
+    "lexicons": "bun --filter @comet/lexicons generate"
   },
   "type": "module",
   "workspaces": [
