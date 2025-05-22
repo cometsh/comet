@@ -42,8 +42,23 @@
     "packages/lexicons": {
       "name": "@comet/lexicons",
       "dependencies": {
-        "@atcute/lex-cli": "^2.0.2",
         "@atcute/lexicons": "^1.0.3",
+      },
+      "devDependencies": {
+        "@atcute/lex-cli": "^2.0.2",
+        "@types/bun": "latest",
+      },
+      "peerDependencies": {
+        "typescript": "^5",
+      },
+    },
+    "packages/test": {
+      "name": "test",
+      "dependencies": {
+        "@atcute/atproto": "^3.0.2",
+        "@atcute/bluesky": "^3.0.2",
+        "@atcute/client": "^4.0.2",
+        "@comet/lexicons": "workspace:",
       },
       "devDependencies": {
         "@types/bun": "latest",
@@ -55,6 +70,14 @@
   },
   "packages": {
     "@ampproject/remapping": ["@ampproject/remapping@2.3.0", "", { "dependencies": { "@jridgewell/gen-mapping": "^0.3.5", "@jridgewell/trace-mapping": "^0.3.24" } }, "sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw=="],
+
+    "@atcute/atproto": ["@atcute/atproto@3.0.2", "", { "dependencies": { "@atcute/lexicons": "^1.0.2" } }, "sha512-p37GqTmrxc1XaxtX8JsePEuomL+PtDeGdy0lcBm+HisD03ZZTia7MouxUpnYezX0l926fFaDc9tllIBtX9iSsQ=="],
+
+    "@atcute/bluesky": ["@atcute/bluesky@3.0.2", "", { "dependencies": { "@atcute/atproto": "^3.0.2", "@atcute/lexicons": "^1.0.2" } }, "sha512-xDRu/8Rlu3uTG/Mf625vUvKiFvy3hdCE371pXSJpHofivNZxi+MburdmYgOsBWZstNMo4vTBUviWaLJpL23rFg=="],
+
+    "@atcute/client": ["@atcute/client@4.0.2", "", { "dependencies": { "@atcute/identity": "^1.0.2", "@atcute/lexicons": "^1.0.2" } }, "sha512-AOs6DEm59I0+wt8JOEOjKQLtBYZMML9p40pxaEWqP/ukAlhYUfLc9Geby5CMBmh7TchQCMCSHQzrY/lDs026Bw=="],
+
+    "@atcute/identity": ["@atcute/identity@1.0.2", "", { "dependencies": { "@atcute/lexicons": "^1.0.2", "@badrap/valita": "^0.4.4" } }, "sha512-SrDPHuEarEHj9bx7NfYn7DYG6kIgJIMRU581iOCIaVaiZ1WhE9D8QxTxeYG/rbGNSa85E891ECp1sQcKiBN0kg=="],
 
     "@atcute/lex-cli": ["@atcute/lex-cli@2.0.2", "", { "dependencies": { "@atcute/lexicon-doc": "^1.0.1", "@badrap/valita": "^0.4.4", "@externdefs/collider": "^0.3.0", "picocolors": "^1.1.1", "prettier": "^3.5.3" }, "bin": { "lex-cli": "cli.mjs" } }, "sha512-GdudG2F4FKgFLdE7pB+aj2JOprCHkjlYtG1/rJriHKUZ5CPPfhd8A/+xMXaf9qoNqtyK4L7G3GYpd2PnS9bF8Q=="],
 
@@ -585,6 +608,8 @@
     "tapable": ["tapable@2.2.1", "", {}, "sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ=="],
 
     "tar": ["tar@7.4.3", "", { "dependencies": { "@isaacs/fs-minipass": "^4.0.0", "chownr": "^3.0.0", "minipass": "^7.1.2", "minizlib": "^3.0.1", "mkdirp": "^3.0.1", "yallist": "^5.0.0" } }, "sha512-5S7Va8hKfV7W5U6g3aYxXmlPoZVAwUMy9AOKyF2fVuZa2UD3qZjg578OrLRt8PcNN1PleVaL/5/yYATNL0ICUw=="],
+
+    "test": ["test@workspace:packages/test"],
 
     "tinyglobby": ["tinyglobby@0.2.13", "", { "dependencies": { "fdir": "^6.4.4", "picomatch": "^4.0.2" } }, "sha512-mEwzpUgrLySlveBwEVDMKk5B57bhLPYovRfPAXD5gA/98Opn0rCDj3GtLwFvCvH5RK9uPCExUROW5NjDwvqkxw=="],
 
