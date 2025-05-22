@@ -20,6 +20,7 @@ const _viewerStateSchema = /*#__PURE__*/ v.object({
   $type: /*#__PURE__*/ v.optional(
     /*#__PURE__*/ v.literal("sh.comet.v0.feed.defs#viewerState"),
   ),
+  featured: /*#__PURE__*/ v.optional(/*#__PURE__*/ v.boolean()),
   like: /*#__PURE__*/ v.optional(/*#__PURE__*/ v.resourceUriString()),
   repost: /*#__PURE__*/ v.optional(/*#__PURE__*/ v.resourceUriString()),
 });

@@ -12,7 +12,6 @@
         "properties": {
           "tracks": {
             "type": "array",
-            "minLength": 1,
             "items": { "type": "string", "format": "at-uri" }
           },
           "image": {
@@ -82,6 +81,38 @@
     "podcast": {
       "type": "token",
       "description": "Indicates the playlist is a podcast or radio show split into several individual tracks."
+    },
+    "view": {
+      "type": "object",
+      "required": ["uri", "cid", "author", "tracks", "record"],
+      "properties": {
+        "uri": { "type": "string", "format": "at-uri" },
+        "cid": { "type": "string", "format": "cid" },
+        "author": {
+          "type": "ref",
+          "ref": "sh.comet.v0.actor.profile#viewFull"
+        },
+        "tracks": {
+          "type": "array",
+          "items": { "type": "ref", "ref": "sh.comet.v0.feed.track#view" },
+          "description": "TODO: include cursor for pagination if too many?"
+        },
+        "image": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL pointing to where the image for the playlist can be fetched."
+        },
+        "record": {
+          "type": "ref",
+          "ref": "#main"
+        },
+        "repostCount": { "type": "integer" },
+        "likeCount": { "type": "integer" },
+        "commentCount": { "type": "integer" },
+        "trackCount": { "type": "integer" },
+        "indexedAt": { "type": "string", "format": "datetime" },
+        "viewer": { "type": "ref", "ref": "sh.comet.v0.feed.defs#viewerState" }
+      }
     }
   }
 }

@@ -1,6 +1,7 @@
 import type {} from "@atcute/lexicons";
 import * as v from "@atcute/lexicons/validations";
 import type {} from "@atcute/lexicons/ambient";
+import * as ShCometV0ActorProfile from "../actor/profile.js";
 import * as ShCometV0FeedDefs from "./defs.js";
 import * as ShCometV0RichtextFacet from "../richtext/facet.js";
 
@@ -45,8 +46,11 @@ const _viewSchema = /*#__PURE__*/ v.object({
     /*#__PURE__*/ v.literal("sh.comet.v0.feed.track#view"),
   ),
   audio: /*#__PURE__*/ v.genericUriString(),
-  author: /*#__PURE__*/ v.unknown(),
+  get author() {
+    return ShCometV0ActorProfile.viewFullSchema;
+  },
   cid: /*#__PURE__*/ v.cidString(),
+  commentCount: /*#__PURE__*/ v.optional(/*#__PURE__*/ v.integer()),
   image: /*#__PURE__*/ v.optional(/*#__PURE__*/ v.genericUriString()),
   indexedAt: /*#__PURE__*/ v.datetimeString(),
   likeCount: /*#__PURE__*/ v.optional(/*#__PURE__*/ v.integer()),

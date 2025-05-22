@@ -1,7 +1,10 @@
 export * as ShCometV0ActorGetProfile from "./types/sh/comet/v0/actor/getProfile.js";
+export * as ShCometV0ActorGetProfiles from "./types/sh/comet/v0/actor/getProfiles.js";
 export * as ShCometV0ActorProfile from "./types/sh/comet/v0/actor/profile.js";
 export * as ShCometV0FeedComment from "./types/sh/comet/v0/feed/comment.js";
 export * as ShCometV0FeedDefs from "./types/sh/comet/v0/feed/defs.js";
+export * as ShCometV0FeedGetActorPlaylists from "./types/sh/comet/v0/feed/getActorPlaylists.js";
+export * as ShCometV0FeedGetActorTracks from "./types/sh/comet/v0/feed/getActorTracks.js";
 export * as ShCometV0FeedLike from "./types/sh/comet/v0/feed/like.js";
 export * as ShCometV0FeedPlay from "./types/sh/comet/v0/feed/play.js";
 export * as ShCometV0FeedPlaylist from "./types/sh/comet/v0/feed/playlist.js";

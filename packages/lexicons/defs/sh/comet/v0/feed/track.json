@@ -4,7 +4,7 @@
   "defs": {
     "main": {
       "type": "record",
-      "description": "A Comet audio track.",
+      "description": "A Comet audio track. TODO: should probably have some sort of pre-calculated waveform, or have a query to get one from a blob?",
       "key": "tid",
       "record": {
         "type": "object",
@@ -64,7 +64,10 @@
       "properties": {
         "uri": { "type": "string", "format": "at-uri" },
         "cid": { "type": "string", "format": "cid" },
-        "author": { "type": "unknown", "description": "TODO" },
+        "author": {
+          "type": "ref",
+          "ref": "sh.comet.v0.actor.profile#viewFull"
+        },
         "audio": {
           "type": "string",
           "format": "uri",
@@ -82,6 +85,7 @@
         "repostCount": { "type": "integer" },
         "likeCount": { "type": "integer" },
         "playCount": { "type": "integer" },
+        "commentCount": { "type": "integer" },
         "indexedAt": { "type": "string", "format": "datetime" },
         "viewer": { "type": "ref", "ref": "sh.comet.v0.feed.defs#viewerState" }
       }

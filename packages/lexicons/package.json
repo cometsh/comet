@@ -1,6 +1,6 @@
 {
   "name": "@comet/lexicons",
-  "module": "index.ts",
+  "main": "src/index.ts",
   "devDependencies": {
     "@atcute/lex-cli": "^2.0.2",
     "@types/bun": "latest"

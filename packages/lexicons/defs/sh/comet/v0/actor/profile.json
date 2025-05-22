@@ -58,19 +58,10 @@
           "maxGraphemes": 64,
           "maxLength": 640
         },
-        "description": {
-          "type": "string",
-          "maxGraphemes": 256,
-          "maxLength": 2560
-        },
-        "descriptionFacets": {
-          "type": "ref",
-          "ref": "sh.comet.v0.richtext.facet"
-        },
         "avatar": { "type": "string", "format": "uri" },
         "indexedAt": { "type": "string", "format": "datetime" },
         "createdAt": { "type": "string", "format": "datetime" },
-        "viewer": { "type": "unknown", "description": "TODO" }
+        "viewer": { "type": "ref", "ref": "#viewerState" }
       }
     },
     "viewFull": {
@@ -106,8 +97,13 @@
           "maxLength": 5,
           "items": { "type": "string", "format": "at-uri" }
         },
-        "viewer": { "type": "unknown", "description": "TODO" }
+        "viewer": { "type": "ref", "ref": "#viewerState" }
       }
+    },
+    "viewerState": {
+      "type": "object",
+      "description": "Metadata about the requesting account's relationship with the user. TODO: determine if we create our own graph or inherit bsky's.",
+      "properties": {}
     }
   }
 }
