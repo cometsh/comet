@@ -43,7 +43,6 @@ const _mainSchema = /*#__PURE__*/ v.record(
       /*#__PURE__*/ v.stringLength(1, 2560),
       /*#__PURE__*/ v.stringGraphemes(0, 256),
     ]),
-    tracks: /*#__PURE__*/ v.array(/*#__PURE__*/ v.resourceUriString()),
     type: /*#__PURE__*/ v.string<
       | "sh.comet.v0.feed.playlist#album"
       | "sh.comet.v0.feed.playlist#compilation"

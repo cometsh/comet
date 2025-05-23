@@ -8,12 +8,8 @@
       "key": "tid",
       "record": {
         "type": "object",
-        "required": ["tracks", "title", "type", "createdAt"],
+        "required": ["title", "type", "createdAt"],
         "properties": {
-          "tracks": {
-            "type": "array",
-            "items": { "type": "string", "format": "at-uri" }
-          },
           "image": {
             "type": "blob",
             "description": "Image to be displayed representing the playlist.",

@@ -17,6 +17,5 @@ be a bit messy for a while. Feel free to contribute and voice your opinions!
 - [ ] Experimental Lexicons
   - [x] Records
   - [ ] Queries
-- [ ] PoC Node/Bun AppView (eventually I want to rewrite in something like Rust
-      or Elixir. TBD)
+- [ ] AppView (Elixir)
 - [ ] Clients

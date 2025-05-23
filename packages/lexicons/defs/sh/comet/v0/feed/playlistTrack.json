@@ -1,0 +1,26 @@
+{
+  "lexicon": 1,
+  "id": "sh.comet.v0.feed.playlistTrack",
+  "defs": {
+    "main": {
+      "type": "record",
+      "description": "A link between a Comet track and a playlist.",
+      "key": "tid",
+      "record": {
+        "type": "object",
+        "required": ["track", "playlist", "position"],
+        "properties": {
+          "track": {
+            "type": "string",
+            "format": "at-uri"
+          },
+          "playlist": {
+            "type": "string",
+            "format": "at-uri"
+          },
+          "position": { "type": "integer", "minimum": 0 }
+        }
+      }
+    }
+  }
+}

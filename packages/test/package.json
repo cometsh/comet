@@ -13,6 +13,7 @@
     "@atcute/atproto": "^3.0.2",
     "@atcute/bluesky": "^3.0.2",
     "@atcute/client": "^4.0.2",
-    "@comet/lexicons": "workspace:*"
+    "@comet/lexicons": "workspace:*",
+    "rambdax": "^11.3.1"
   }
 }
