@@ -15,7 +15,7 @@
   in {
     devShells = defaultForSystems (pkgs:
       pkgs.mkShell {
-        nativeBuildInputs = with pkgs; [nodejs_22 bun];
+        nativeBuildInputs = with pkgs; [nodejs_22 bun elixir erlang];
       });
   };
 }
