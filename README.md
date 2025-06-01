@@ -5,8 +5,9 @@
 Comet's goal is to provide an open, decentralised alternative for uploading and
 sharing your music with others.
 
-Follow along on Bluesky! [@comet.sh](https://bsky.app/profile/comet.sh) /
-[@ovyerus.com](https://bsky.app/profile/ovyerus.com)
+Follow on Bluesky: [@comet.sh](https://bsky.app/profile/comet.sh) /
+[@ovyerus.com](https://bsky.app/profile/ovyerus.com)  
+Or chat along on our Discord: https://discord.gg/ZKK7DnubD9
 
 This project is in the _very_ early stages and a lot will change over time,
 especially as this is my first foray into the ATProtocol ecosystem. Stuff will
