@@ -40,6 +40,10 @@
             "description": "Annotations of the track's description.",
             "ref": "sh.comet.v0.richtext.facet"
           },
+          "explicit": {
+            "type": "boolean",
+            "description": "Whether the track contains explicit content that may objectionable to some people, usually swearing or adult themes."
+          },
           "tags": {
             "type": "array",
             "description": "Hashtags for the track, usually for genres.",
@@ -53,7 +57,12 @@
           "createdAt": {
             "type": "string",
             "format": "datetime",
-            "description": "Timestamp for when the track was originally created/released."
+            "description": "Timestamp for when the track entry was originally created."
+          },
+          "releasedAt": {
+            "type": "string",
+            "format": "datetime",
+            "description": "Timestamp for when the track was released. If in the future, may be used to implement pre-savable tracks."
           }
         }
       }
