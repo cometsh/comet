@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    ports:
+      - 127.0.0.1:5432:5432
+    environment:
+      POSTGRES_DB: comet_dev
+      POSTGRES_USER: comet
+      POSTGRES_PASSWORD: comet
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+volumes:
+  postgres:

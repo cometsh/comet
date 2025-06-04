@@ -44,6 +44,8 @@ defmodule Comet.MixProject do
       {:bandit, "~> 1.5"},
       {:lexgen, "~> 1.0.0", only: [:dev]},
       {:req, "~> 0.5.0"},
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:drinkup, "~> 0.1"},
       {:typedstruct, "~> 0.5"}
     ]
   end

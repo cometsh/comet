@@ -11,6 +11,8 @@ config :comet,
   ecto_repos: [Comet.Repo],
   generators: [timestamp_type: :utc_datetime, binary_id: true]
 
+config :comet, Comet.Repo, migration_primary_key: [name: :id, type: :binary_id]
+
 # Configures the endpoint
 config :comet, CometWeb.Endpoint,
   url: [host: "localhost"],
