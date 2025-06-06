@@ -3,6 +3,7 @@ defmodule Comet.Repo.Comment do
   Schema containing information about a Comet comment.
   """
   use Comet.Schema
+  import Ecto.Changeset
 
   schema "comments" do
     field :rkey, :string
@@ -18,5 +19,13 @@ defmodule Comet.Repo.Comment do
     has_many :replies, __MODULE__, foreign_key: :reply_id
 
     timestamps(inserted_at: :indexed_at, updated_at: false)
+  end
+
+  def new(params \\ %{}), do: changeset(%__MODULE__{}, params)
+
+  def changeset(struct, params \\ %{}) do
+    struct
+    |> cast(params, [:rkey, :did, :text, :facets, :subject_id, :subject_type, :langs, :created_at])
+    |> validate_required([:rkey, :text])
   end
 end

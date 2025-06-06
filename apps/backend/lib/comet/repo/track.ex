@@ -3,6 +3,7 @@ defmodule Comet.Repo.Track do
   Schema containing information about a Comet track.
   """
   use Comet.Schema
+  import Ecto.Changeset
 
   schema "tracks" do
     field :rkey, :string
@@ -20,5 +21,26 @@ defmodule Comet.Repo.Track do
     belongs_to :identity, Repo.Identity, foreign_key: :did, references: :did
 
     timestamps(inserted_at: :indexed_at, updated_at: false)
+  end
+
+  def new(params \\ %{}), do: changeset(%__MODULE__{}, params)
+
+  def changeset(struct, params \\ %{}) do
+    struct
+    |> cast(params, [
+      :rkey,
+      :did,
+      :title,
+      :audio,
+      :image,
+      :description,
+      :explicit,
+      :tags,
+      :created_at,
+      :released_at
+    ])
+    |> cast_embed(:description_facets)
+    |> cast_embed(:link)
+    |> validate_required([:rkey, :did, :audio, :title, :created_at])
   end
 end

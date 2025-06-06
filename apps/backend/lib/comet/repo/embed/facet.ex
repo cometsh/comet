@@ -1,5 +1,6 @@
 defmodule Comet.Repo.Embed.Facet do
   use Comet.Schema
+  import Ecto.Changeset
 
   @primary_key false
   embedded_schema do
@@ -10,5 +11,12 @@ defmodule Comet.Repo.Embed.Facet do
 
     # Sadly Ecto doesn't support union types/embeds so this has to be generic, without doing weirdness in the database at least
     field :features, {:array, :map}
+  end
+
+  def changeset(struct, params \\ %{}) do
+    struct
+    |> cast(params, [:features])
+    |> cast_embed(:index, required: true)
+    |> validate_required([:features])
   end
 end

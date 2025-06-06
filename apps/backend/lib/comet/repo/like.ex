@@ -3,6 +3,7 @@ defmodule Comet.Repo.Like do
   Schema containing information about a Comet like.
   """
   use Comet.Schema
+  import Ecto.Changeset
 
   schema "likes" do
     field :rkey, :string
@@ -13,5 +14,13 @@ defmodule Comet.Repo.Like do
     belongs_to :identity, Repo.Identity, foreign_key: :did, references: :did
 
     timestamps(inserted_at: :indexed_at, updated_at: false)
+  end
+
+  def new(params \\ %{}), do: changeset(%__MODULE__{}, params)
+
+  def changeset(struct, params \\ %{}) do
+    struct
+    |> cast(params, [:rkey, :did, :subject_id, :subject_type, :created_at])
+    |> validate_required([:rkey, :did, :subject_id, :subject_type, :created_at])
   end
 end
