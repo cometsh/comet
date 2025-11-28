@@ -1,15 +1,8 @@
 {
   "json.schemas": [
     {
-      "fileMatch": ["/packages/lexicons/*/**/*.json"],
+      "fileMatch": ["/lexicons/*/**/*.json"],
       "url": "https://gist.githubusercontent.com/mary-ext/6e428031c18799d1587048b456d118cb/raw/4322c492384ac5da33986dee9588938a88d922f1/schema.json"
     }
-  ],
-  "elixirLS.projectDir": "./apps/backend",
-  "search.exclude": {
-    "**/node_modules": true,
-    "**/bower_components": true,
-    "**/*.code-search": true,
-    "packages/lexicons/src/**/*": true
-  }
+  ], 
 }
