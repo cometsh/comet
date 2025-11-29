@@ -15,7 +15,7 @@
   in {
     devShells = defaultForSystems (pkgs:
       pkgs.mkShell {
-        nativeBuildInputs = with pkgs; [elixir erlang nodejs pnpm tailwindcss_4 watchman];
+        nativeBuildInputs = with pkgs; [elixir erlang inotify-tools nodejs pnpm tailwindcss_4 watchman];
 
         shellHook = ''
           export TAILWINDCSS_PATH="${pkgs.lib.getExe pkgs.tailwindcss_4}"

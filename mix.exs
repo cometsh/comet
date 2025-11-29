@@ -65,7 +65,11 @@ defmodule Comet.MixProject do
       {:gettext, "~> 1.0"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.2.0"},
-      {:bandit, "~> 1.5"}
+      {:bandit, "~> 1.5"},
+      {:atex, "~> 0.6"},
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:drinkup, "~> 0.1"},
+      {:typedstruct, "~> 0.5"}
     ]
   end
 
@@ -81,7 +85,11 @@ defmodule Comet.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      "assets.setup": ["cmd pnpm install", "tailwind.install --if-missing", "esbuild.install --if-missing"],
+      "assets.setup": [
+        "cmd pnpm install",
+        # "tailwind.install --if-missing",
+        "esbuild.install --if-missing"
+      ],
       "assets.build": ["compile", "tailwind comet", "esbuild comet"],
       "assets.deploy": [
         "tailwind comet --minify",

@@ -2,8 +2,8 @@ import Config
 
 # Configure your database
 config :comet, Comet.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "comet",
+  password: "comet",
   hostname: "localhost",
   database: "comet_dev",
   stacktrace: true,
