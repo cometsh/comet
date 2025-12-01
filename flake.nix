@@ -14,12 +14,13 @@
     defaultForSystems = fn: forSystems (pkgs: {default = fn pkgs;});
   in {
     devShells = defaultForSystems (pkgs:
-      pkgs.mkShell {
-        nativeBuildInputs = with pkgs; [elixir erlang inotify-tools nodejs pnpm tailwindcss_4 watchman];
+      with pkgs;
+        mkShell {
+          nativeBuildInputs = [elixir erlang nodejs pnpm tailwindcss_4 watchman] ++ (lib.optional stdenv.isLinux [inotify-tools]);
 
-        shellHook = ''
-          export TAILWINDCSS_PATH="${pkgs.lib.getExe pkgs.tailwindcss_4}"
-        '';
-      });
+          shellHook = ''
+            export TAILWINDCSS_PATH="${lib.getExe tailwindcss_4}"
+          '';
+        });
   };
 }
