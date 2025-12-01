@@ -13,5 +13,8 @@
     "format": "prettier --write ."
   },
   "type": "commonjs",
-  "workspaces": []
+  "workspaces": [],
+  "dependencies": {
+    "@fontsource-variable/work-sans": "^5.2.8"
+  }
 }

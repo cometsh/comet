@@ -36,7 +36,7 @@ config :esbuild,
   version: "0.25.4",
   comet: [
     args:
-      ~w(js/app.js --bundle --target=es2022 --outdir=../priv/static/assets/js --external:/fonts/* --external:/images/* --alias:@=.),
+      ~w(js/app.js --bundle --target=es2022 --outdir=../priv/static/assets/js --external:/fonts/* --external:/images/* --loader:.woff2=file --alias:@=.),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => [Path.expand("../deps", __DIR__), Mix.Project.build_path()]}
   ]
@@ -52,7 +52,11 @@ config :tailwind,
     cd: Path.expand("..", __DIR__)
   ],
   version_check: false,
-  path: System.get_env("TAILWINDCSS_PATH", Path.expand("../assets/node_modules/.bin/tailwindcss", __DIR__))
+  path:
+    System.get_env(
+      "TAILWINDCSS_PATH",
+      Path.expand("../assets/node_modules/.bin/tailwindcss", __DIR__)
+    )
 
 # Configure Elixir's Logger
 config :logger, :default_formatter,

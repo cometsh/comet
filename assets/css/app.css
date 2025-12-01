@@ -23,3 +23,8 @@
 [data-phx-session], [data-phx-teleported-src] { display: contents }
 
 /* This file is for your main application CSS */
+@theme {
+  --color-brand-light: #ffa34e;
+  --color-brand-dark: #ff4400;
+   --font-sans: "Work Sans Variable", ui-sans-serif, system-ui, sans-serif;
+}
