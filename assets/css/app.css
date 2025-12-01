@@ -4,6 +4,7 @@
 @import "tailwindcss" source(none);
 @source "../css";
 @source "../js";
+@source "../../lib/comet_app";
 @source "../../lib/comet_web";
 
 /* A Tailwind plugin that makes "hero-#{ICON}" classes available.
