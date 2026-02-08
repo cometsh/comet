@@ -2,11 +2,11 @@
   "name": "@comet/workspace",
   "version": "1.0.0",
   "devDependencies": {
-    "@tailwindcss/cli": "^4.1.17",
-    "prettier": "^3.5.3",
-    "prettier-plugin-tailwindcss": "^0.6.11",
-    "tailwindcss": "^4.1.17",
-    "typescript": "^5"
+    "@tailwindcss/cli": "^4.1.18",
+    "prettier": "^3.8.1",
+    "prettier-plugin-tailwindcss": "^0.7.2",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.9.3"
   },
   "private": true,
   "scripts": {

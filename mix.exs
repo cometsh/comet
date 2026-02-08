@@ -66,9 +66,9 @@ defmodule Comet.MixProject do
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.2.0"},
       {:bandit, "~> 1.5"},
-      {:atex, "~> 0.6"},
+      {:atex, "~> 0.7"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
-      {:drinkup, "~> 0.1"},
+      {:drinkup, "~> 0.2"},
       {:typedstruct, "~> 0.5"},
       {:hologram, "~> 0.6.5"}
     ]
