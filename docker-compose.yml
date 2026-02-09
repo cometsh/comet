@@ -10,6 +10,17 @@ services:
       POSTGRES_PASSWORD: comet
     volumes:
       - postgres:/var/lib/postgresql/data
+  tap:
+    image: "ghcr.io/bluesky-social/indigo/tap"
+    restart: "unless-stopped"
+    ports:
+      - "127.0.0.1:2480:2480"
+    volumes:
+      - "tap:/data"
+    # environment:
+    # TAP_SIGNAL_COLLECTION: "sh.weaver.actor.profile"
+    # TAP_COLLECTION_FILTERS: "sh.weaver.*"
 
 volumes:
   postgres:
+  tap:

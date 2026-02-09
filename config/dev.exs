@@ -90,3 +90,8 @@ config :phoenix_live_view,
 
 # Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false
+
+config :atex, Atex.OAuth,
+  base_url: "http://127.0.0.1:4000/oauth",
+  private_key: "MHcCAQEEIGA8RFx1QUfvdVPD24SvBMS6a0X9fPYx6EPLHttG55ScoAoGCCqGSM49AwEHoUQDQgAEcGzUFa2vMqnevHI5R+QByCmHSCfVy7Uge3VcL5GPVL/tBMeoVizxZey3MUekIHZ981iXW8fTbntYJNXMi2hN5w==",
+  is_localhost: true

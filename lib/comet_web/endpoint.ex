@@ -24,7 +24,7 @@ defmodule CometWeb.Endpoint do
     at: "/",
     from: :comet,
     gzip: not code_reloading?,
-    only: ["hologram" | CometWeb.static_paths()],
+    only: CometWeb.static_paths(),
     raise_on_missing_only: code_reloading?
 
   # Code reloading can be explicitly enabled under the
@@ -51,6 +51,5 @@ defmodule CometWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug Hologram.Router
   plug CometWeb.Router
 end

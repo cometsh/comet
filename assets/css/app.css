@@ -1,30 +1,30 @@
 /* See the Tailwind configuration guide for advanced usage
    https://tailwindcss.com/docs/configuration */
 
-@import "tailwindcss" source(none);
+/*@import "tailwindcss" source(none);
 @source "../css";
 @source "../js";
 @source "../../lib/comet_app";
-@source "../../lib/comet_web";
+@source "../../lib/comet_web";*/
 
 /* A Tailwind plugin that makes "hero-#{ICON}" classes available.
    The heroicons installation itself is managed by your mix.exs */
-@plugin "../vendor/heroicons";
+/*@plugin "../vendor/heroicons";*/
 
 /* Add variants based on LiveView classes */
-@custom-variant phx-click-loading (.phx-click-loading&, .phx-click-loading &);
+/*@custom-variant phx-click-loading (.phx-click-loading&, .phx-click-loading &);
 @custom-variant phx-submit-loading (.phx-submit-loading&, .phx-submit-loading &);
-@custom-variant phx-change-loading (.phx-change-loading&, .phx-change-loading &);
+@custom-variant phx-change-loading (.phx-change-loading&, .phx-change-loading &);*/
 
 /* Use the data attribute for dark mode  */
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+/*@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));*/
 
 /* Make LiveView wrapper divs transparent for layout */
-[data-phx-session], [data-phx-teleported-src] { display: contents }
+/*[data-phx-session], [data-phx-teleported-src] { display: contents }*/
 
 /* This file is for your main application CSS */
-@theme {
+/*@theme {
   --color-brand-light: #ffa34e;
   --color-brand-dark: #ff4400;
    --font-sans: "Work Sans Variable", ui-sans-serif, system-ui, sans-serif;
-}
+}*/

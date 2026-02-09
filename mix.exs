@@ -10,7 +10,7 @@ defmodule Comet.MixProject do
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
-      compilers: [:phoenix_live_view, :hologram] ++ Mix.compilers(),
+      compilers: [:phoenix_live_view] ++ Mix.compilers(),
       listeners: [Phoenix.CodeReloader]
     ]
   end
@@ -69,8 +69,7 @@ defmodule Comet.MixProject do
       {:atex, "~> 0.7"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:drinkup, "~> 0.2"},
-      {:typedstruct, "~> 0.5"},
-      {:hologram, "~> 0.6.5"}
+      {:typedstruct, "~> 0.5"}
     ]
   end
 

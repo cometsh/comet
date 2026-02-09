@@ -14,10 +14,20 @@ defmodule CometWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", CometWeb do
+  scope "/" do
     pipe_through :browser
 
-    get "/", PageController, :home
+    forward "/oauth", Atex.OAuth.Plug, [callback: {__MODULE__, :oauth_callback, []}]
+
+    get "/", CometWeb.PageController, :home
+  end
+
+  def oauth_callback(conn) do
+    # Handle successful OAuth authentication
+    conn
+    |> put_resp_header("Location", "/")
+    |> resp(307, "")
+    |> send_resp()
   end
 
   # Other scopes may use custom stacks.
@@ -41,4 +51,10 @@ defmodule CometWeb.Router do
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
   end
+end
+
+defimpl Plug.Exception, for: Atex.OAuth.Error do
+  def status(%{reason: reason}) when reason in [:missing_handle, :invalid_handle, :invalid_callback_request, :issuer_mismatch], do: 400
+  def status(_exception), do: 500
+  def actions(_exception), do: []
 end
