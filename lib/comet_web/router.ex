@@ -17,9 +17,10 @@ defmodule CometWeb.Router do
   scope "/" do
     pipe_through :browser
 
-    forward "/oauth", Atex.OAuth.Plug, [callback: {__MODULE__, :oauth_callback, []}]
+    forward "/oauth", Atex.OAuth.Plug, callback: {__MODULE__, :oauth_callback, []}
 
     get "/", CometWeb.PageController, :home
+    live "/login", CometWeb.LoginLive
   end
 
   def oauth_callback(conn) do
@@ -54,7 +55,15 @@ defmodule CometWeb.Router do
 end
 
 defimpl Plug.Exception, for: Atex.OAuth.Error do
-  def status(%{reason: reason}) when reason in [:missing_handle, :invalid_handle, :invalid_callback_request, :issuer_mismatch], do: 400
+  def status(%{reason: reason})
+      when reason in [
+             :missing_handle,
+             :invalid_handle,
+             :invalid_callback_request,
+             :issuer_mismatch
+           ],
+      do: 400
+
   def status(_exception), do: 500
   def actions(_exception), do: []
 end

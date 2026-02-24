@@ -53,6 +53,7 @@ defmodule CometWeb do
       use Phoenix.LiveView
 
       unquote(html_helpers())
+      unquote(live_helpers())
     end
   end
 
@@ -61,6 +62,7 @@ defmodule CometWeb do
       use Phoenix.LiveComponent
 
       unquote(html_helpers())
+      unquote(live_helpers())
     end
   end
 
@@ -102,6 +104,13 @@ defmodule CometWeb do
         endpoint: CometWeb.Endpoint,
         router: CometWeb.Router,
         statics: CometWeb.static_paths()
+    end
+  end
+
+  def live_helpers do
+    quote do
+      @spec noreply(Phoenix.LiveView.Socket.t()) :: {:noreply, Phoenix.LiveView.Socket.t()}
+      def noreply(socket), do: {:noreply, socket}
     end
   end
 
