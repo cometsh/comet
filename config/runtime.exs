@@ -22,6 +22,9 @@ end
 
 config :comet, CometWeb.Endpoint, http: [port: String.to_integer(System.get_env("PORT", "4000"))]
 
+config :comet,
+  ffmpeg_bin: System.get_env("FFMPEG_PATH", "ffmpeg")
+
 if config_env() == :prod do
   database_url =
     System.get_env("DATABASE_URL") ||

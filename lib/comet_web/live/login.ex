@@ -37,6 +37,7 @@ defmodule CometWeb.LoginLive do
     errors =
       handle
       |> validate(true)
+      # TODO: add a helper for transforming error map into the thing for form assign
       |> case do
         nil -> []
         msg -> [errors: [handle: {msg, []}]]

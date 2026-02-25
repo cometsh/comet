@@ -16,10 +16,11 @@
     devShells = defaultForSystems (pkgs:
       with pkgs;
         mkShell {
-          nativeBuildInputs = [elixir erlang nodejs pnpm tailwindcss_4 watchman] ++ (lib.optional stdenv.isLinux [inotify-tools]);
+          nativeBuildInputs = [elixir erlang ffmpeg-full nodejs pnpm tailwindcss_4 watchman] ++ (lib.optional stdenv.isLinux [inotify-tools]);
 
           shellHook = ''
             export TAILWINDCSS_PATH="${lib.getExe tailwindcss_4}"
+            export FFMPEG_PATH="${lib.getExe ffmpeg-full}"
           '';
         });
   };

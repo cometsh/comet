@@ -30,6 +30,8 @@ defmodule CometWeb.Router do
 
   scope "/" do
     pipe_through :authenticated_browser
+
+    live "/upload", CometWeb.UploadLive
   end
 
   def oauth_callback(conn) do

@@ -2,6 +2,8 @@
 
 <%= if @did == nil do %>
   <.link href={~p"/login"}>Login</.link>
+<% else %>
+  <.link href={~p"/upload"}>Upload</.link>
 <% end %>
 
 <h1>Comet is the next-generation of music streaming.</h1>
