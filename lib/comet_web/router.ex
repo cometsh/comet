@@ -10,6 +10,11 @@ defmodule CometWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :authenticated_browser do
+    plug :browser
+    plug CometWeb.Plugs.RequireAtexSession
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -21,6 +26,10 @@ defmodule CometWeb.Router do
 
     get "/", CometWeb.PageController, :home
     live "/login", CometWeb.LoginLive
+  end
+
+  scope "/" do
+    pipe_through :authenticated_browser
   end
 
   def oauth_callback(conn) do
