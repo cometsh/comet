@@ -5,6 +5,8 @@ defmodule CometWeb.LoginLive do
     ~H"""
     <.link href={~p"/"}>Go home</.link>
 
+    <Layouts.flash_group flash={@flash} />
+
     <.form for={@form} id="login-form" phx-change="validate" phx-submit="submit">
       <.input type="text" field={@form[:handle]} placeholder="alice.bsky.social" autofocus />
       <button type="submit">Submit</button>

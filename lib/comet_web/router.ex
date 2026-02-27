@@ -24,7 +24,10 @@ defmodule CometWeb.Router do
   end
 
   def oauth_callback(conn) do
-    # Handle successful OAuth authentication
+    with {:ok, %{did: did} = xrpc_client} <- Atex.XRPC.OAuthClient.from_conn(conn) do
+      Comet.Profiles.ensure_profile(did, xrpc_client)
+    end
+
     conn
     |> put_resp_header("Location", "/")
     |> resp(307, "")
