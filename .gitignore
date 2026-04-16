@@ -32,3 +32,6 @@ comet-*.tar
 npm-debug.log
 /assets/node_modules/
 priv/dets/*
+.dexter*
+CLAUDE.md
+docs/superpowers

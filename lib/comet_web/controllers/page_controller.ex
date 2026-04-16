@@ -4,7 +4,8 @@ defmodule CometWeb.PageController do
   def home(conn, _params) do
     # TODO: automaticaly put client as an assign on conn if valid
     case Atex.XRPC.OAuthClient.from_conn(conn) do
-      {:ok, %{did: did}} ->
+      {:ok, client} ->
+        did = Atex.XRPC.OAuthClient.did(client)
         render(conn, :home, did: did)
 
       _ ->

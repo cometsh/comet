@@ -35,7 +35,8 @@ defmodule CometWeb.Router do
   end
 
   def oauth_callback(conn) do
-    with {:ok, %{did: did} = xrpc_client} <- Atex.XRPC.OAuthClient.from_conn(conn) do
+    with {:ok, xrpc_client} <- Atex.XRPC.OAuthClient.from_conn(conn) do
+      did = Atex.XRPC.OAuthClient.did(xrpc_client)
       Comet.Profiles.ensure_profile(did, xrpc_client)
     end
 

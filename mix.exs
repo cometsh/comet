@@ -70,7 +70,8 @@ defmodule Comet.MixProject do
       {:atex_atproto, "~> 0.1"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:drinkup, "~> 0.2"},
-      {:typedstruct, "~> 0.5"}
+      {:typedstruct, "~> 0.5"},
+      {:image, "~> 0.65"}
     ]
   end
 

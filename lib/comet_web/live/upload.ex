@@ -45,14 +45,10 @@ defmodule CometWeb.UploadLive do
 
       <button type="submit">Upload</button>
 
-      <%= if @audio_cid do %>
-        <p>Uploaded audio file as blob! cid: <code>{@audio_cid}</code></p>
-      <% end %>
-
-      <%= if @record_uri do %>
+      <%= if @record do %>
         <p>
           Created PDS record! explore in pdsls:
-          <a target="_blank" href={"https://pdsls.dev/#{@record_uri}"}><code>{@record_uri}</code></a>
+          <a target="_blank" href={"https://pdsls.dev/#{@record.uri}"}><code>{@record.uri}</code></a>
         </p>
       <% end %>
     </.form>
@@ -61,27 +57,36 @@ defmodule CometWeb.UploadLive do
 
   def mount(_params, session, socket) do
     # TODO: add function in Atex to do this to hide the use of a special key
-    did = session["atex_session"]
+    {:ok, client} = Atex.XRPC.OAuthClient.new(session["atex_active_session"])
 
     {
       :ok,
       socket
       |> assign(
-        audio_cid: nil,
-        record_uri: nil,
+        record: nil,
         form: to_form(%{"title" => "", "description" => "", "explicit" => false}),
-        did: did
+        _atex_session: session["atex_active_session"]
       )
-      # TODO: preprocessing on the client to allow larger files, to be able to properly hit the 100mb limit in the lexicon
-      # likely through a custom upload provider?
-      |> allow_upload(:audio, accept: ["audio/*"], max_file_size: @audio_size_limit)
-      |> allow_upload(:image, accept: ["image/*"], max_file_size: @image_size_limit)
+      |> allow_upload(:audio,
+        accept: ["audio/*"],
+        max_file_size: @audio_size_limit,
+        writer: fn _name, entry, _socket ->
+          {CometWeb.Uploads.BlobWriter,
+           xrpc_client: client, content_type: entry.client_type, content_length: entry.client_size}
+        end
+      )
+      |> allow_upload(:image,
+        accept: ["image/*"],
+        max_file_size: @image_size_limit,
+        writer: fn _name, entry, _socket ->
+          {CometWeb.Uploads.BlobWriter,
+           xrpc_client: client, content_type: entry.client_type, content_length: entry.client_size}
+        end
+      )
     }
   end
 
   def handle_event("validate", %{"title" => title} = params, socket) do
-    IO.inspect(params, label: "validate")
-
     errors =
       case title do
         "" -> [errors: [title: {"Can't be blank", []}]]
@@ -94,8 +99,8 @@ defmodule CometWeb.UploadLive do
   end
 
   def handle_event("submit", %{"title" => title} = params, socket) do
-    IO.inspect(params, label: "submit")
-    did = socket.assigns.did
+    # did = socket.assigns.did
+    session = socket.assigns._atex_session
 
     # TODO: process description facets
 
@@ -106,80 +111,40 @@ defmodule CometWeb.UploadLive do
         |> noreply()
 
       _ ->
-        # TODO: process files in a separate step to give feedback to the UI? will need to do a search to see the best way for this.
-
-        # TODO: `consume_uploaded_entries` only allows `:ok` or `:postpone` tuples as return.
-        # Is there a proper/widely-done convention for upload processing stuff in Phoenix?
-        [{audio_cid, record_uri}] =
-          consume_uploaded_entries(socket, :audio, fn %{path: in_path}, entry ->
-            tmp_dir = System.tmp_dir!()
-            out_path = Path.join(tmp_dir, entry.uuid)
-
-            # TODO: copy ports stuff from Nostrum voice; is it possible to pipe a stream into a Req body??
-            # double TODO: Need to add streaming support to atex xrpc if so
-            # triple TODO: probably need to cache uploaded files and their transcodes to prevent re-encoding of duplicate files
-            {_out, exit_code} =
-              System.cmd(
-                ffmpeg_executable(),
-                [
-                  "-i",
-                  in_path,
-                  "-map",
-                  "0:a",
-                  "-c:a",
-                  "libopus",
-                  "-b:a",
-                  "96k",
-                  "-f",
-                  "opus",
-                  "-map_metadata",
-                  "1",
-                  out_path
-                ],
-                stderr_to_stdout: true
-              )
-
-            case exit_code do
-              0 ->
-                with {:ok, client} <- Atex.XRPC.OAuthClient.new(did),
-                     {:ok, %{body: %{blob: audio_blob}}, client} <-
-                       Atex.XRPC.post(
-                         client,
-                         %Com.Atproto.Repo.UploadBlob{
-                           raw_input: File.read!(out_path)
-                         },
-                         headers: ["Content-Type": "audio/opus"]
-                       ),
-                     {:ok, %{body: record}, _} <-
-                       Atex.XRPC.post(client, %Com.Atproto.Repo.CreateRecord{
-                         input: %Com.Atproto.Repo.CreateRecord.Input{
-                           collection: "sh.comet.v0.feed.track",
-                           repo: client.did,
-                           rkey: to_string(Atex.TID.now()),
-                           record: %Sh.Comet.V0.Feed.Track{
-                             audio: audio_blob,
-                             title: params["title"],
-                             description: params["description"],
-                             explicit: params["explicit"],
-                             createdAt: DateTime.utc_now() |> DateTime.to_iso8601()
-                           }
-                         }
-                       }) do
-                  {:ok, {audio_blob.ref."$link", record.uri}}
-                end
-
-              e ->
-                # TODO: send ffmpeg output somewhere for observability
-                Logger.error("ffmpeg on upload errored with exit code: #{e}")
-                {:error, :ffmpeg}
-            end
+        [audio_blob] =
+          consume_uploaded_entries(socket, :audio, fn %{blob: blob}, _entry ->
+            {:ok, blob}
           end)
 
+        [image_blob] =
+          consume_uploaded_entries(socket, :image, fn %{blob: blob}, _entry ->
+            {:ok, blob}
+          end)
+
+        {:ok, record} =
+          with {:ok, client} <- Atex.XRPC.OAuthClient.new(session),
+               {:ok, %{body: record}, _} <-
+                 Atex.XRPC.post(client, %Com.Atproto.Repo.CreateRecord{
+                   input: %Com.Atproto.Repo.CreateRecord.Input{
+                     collection: "sh.comet.v0.feed.track",
+                     repo: Atex.XRPC.OAuthClient.did(client),
+                     rkey: to_string(Atex.TID.now()),
+                     record: %Sh.Comet.V0.Feed.Track{
+                       audio: audio_blob,
+                       image: image_blob,
+                       title: params["title"],
+                       description: params["description"],
+                       explicit: params["explicit"],
+                       createdAt: DateTime.utc_now() |> DateTime.to_iso8601()
+                     }
+                   }
+                 }) do
+            {:ok, record}
+          end
+
         socket
-        |> assign(audio_cid: audio_cid, record_uri: record_uri)
+        |> assign(record: record)
         |> noreply()
     end
   end
-
-  defp ffmpeg_executable, do: Application.get_env(:comet, :ffmpeg_bin, "ffmpeg")
 end

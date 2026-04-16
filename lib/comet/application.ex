@@ -12,6 +12,7 @@ defmodule Comet.Application do
       Comet.Repo,
       {DNSCluster, query: Application.get_env(:comet, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Comet.PubSub},
+      {Task.Supervisor, name: Comet.TaskSupervisor},
       # Start a worker by calling: Comet.Worker.start_link(arg)
       # {Comet.Worker, arg},
       # Start to serve requests, typically the last entry
